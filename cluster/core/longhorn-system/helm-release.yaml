@@ -35,11 +35,18 @@ spec:
       storageMinimalAvailablePercentage: 10
     ingress:
       enabled: true
-      host: longhorn.devsorcery.io
-      path: /
-      tls: true
-      tlsSecret: longhorn-tls
+      ingressClassName: "traefik"
+      hosts:
+        - host: "longhorn.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "longhorn.${SECRET_DOMAIN}"
+          secretName: "longhorn-tls"
       annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: traefik-default-middlewares-chain@kubernetescrd
         traefik.ingress.kubernetes.io/router.tls.options: traefik-secure-tlsoptions@kubernetescrd
