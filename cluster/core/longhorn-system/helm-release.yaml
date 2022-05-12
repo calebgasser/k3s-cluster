@@ -34,7 +34,7 @@ spec:
       replicaSoftAntiAffinity: false
       storageMinimalAvailablePercentage: 10
     ingress:
-      enabled: false
+      enabled: true
       ingressClassName: "traefik"
       hosts:
         - host: "longhorn.${SECRET_DOMAIN}"
