@@ -3,20 +3,44 @@ version: "3"
 
 tasks:
 
-  init:
-    desc: Initialize terraform dependencies
+  cf:init:
+    desc: Initialize cloudflare terraform dependencies
     dir: provision/terraform/cloudflare
     cmds:
       - terraform init {{.CLI_ARGS}}
 
-  plan:
+  cf:plan:
     desc: Show the changes terraform will make
     dir: provision/terraform/cloudflare
     cmds:
       - terraform plan {{.CLI_ARGS}}
 
-  apply:
+  cf:apply:
     desc: Apply the changes to Cloudflare
     dir: provision/terraform/cloudflare
     cmds:
       - terraform apply {{.CLI_ARGS}}
+
+  cluster:init:
+    desc: Initialize cluster terraform dependencies
+    dir: provision/terraform/cluster
+    cmds:
+      - terraform init {{.CLI_ARGS}}
+
+  cluster:plan:
+    desc: Show the changes terraform will make
+    dir: provision/terraform/cluster
+    cmds:
+      - terraform plan {{.CLI_ARGS}}
+
+  cluster:apply:
+    desc: Apply the changes to cluster
+    dir: provision/terraform/cluster
+    cmds:
+      - terraform apply {{.CLI_ARGS}}
+
+  cluster:destroy:
+    desc: Destroy the cluster
+    dir: provision/terraform/cluster
+    cmds:
+      - terraform destroy {{.CLI_ARGS}}
