@@ -33,6 +33,7 @@ spec:
       defaultReplicaCount: 3
       replicaSoftAntiAffinity: false
       storageMinimalAvailablePercentage: 10
+      defaultLonghornStaticStorageClass: longhorn
     ingress:
       enabled: true
       ingressClassName: "traefik"
