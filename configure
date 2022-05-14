@@ -296,7 +296,11 @@ setup_github_webhook() {
         envsubst < "${PROJECT_DIR}/tmpl/cluster/flux-system/webhooks/github/secret.sops.yaml" \
             > "${PROJECT_DIR}/cluster/apps/flux-system/webhooks/github/secret.sops.yaml"
 
+        envsubst < "${PROJECT_DIR}/tmpl/cluster/flux-system/secret.sops.yaml" \
+            > "${PROJECT_DIR}/cluster/apps/flux-system/secret.sops.yaml"
+
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/flux-system/webhooks/github/secret.sops.yaml"
+        sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/flux-system/secret.sops.yaml"
 
         if [[ $(yq eval --no-doc 'contains({"resources": ["flux-system"]})' "${PROJECT_DIR}/cluster/apps/kustomization.yaml") == false ]]; then
             yq --inplace '.resources += [ "flux-system" ]' "${PROJECT_DIR}/cluster/apps/kustomization.yaml"
