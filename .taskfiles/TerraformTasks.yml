@@ -21,26 +21,50 @@ tasks:
     cmds:
       - terraform apply {{.CLI_ARGS}}
 
-  cluster:init:
+  cluster:pve1:init:
     desc: Initialize cluster terraform dependencies
-    dir: provision/terraform/cluster
+    dir: provision/terraform/cluster/pve1
     cmds:
       - terraform init {{.CLI_ARGS}}
 
-  cluster:plan:
+  cluster:pve1:plan:
     desc: Show the changes terraform will make
-    dir: provision/terraform/cluster
+    dir: provision/terraform/cluster/pve1
     cmds:
       - terraform plan {{.CLI_ARGS}}
 
-  cluster:apply:
+  cluster:pve1:apply:
     desc: Apply the changes to cluster
-    dir: provision/terraform/cluster
+    dir: provision/terraform/cluster/pve1
     cmds:
       - terraform apply {{.CLI_ARGS}}
 
-  cluster:destroy:
+  cluster:pve1:destroy:
     desc: Destroy the cluster
-    dir: provision/terraform/cluster
+    dir: provision/terraform/cluster/pve1
+    cmds:
+      - terraform destroy {{.CLI_ARGS}}
+
+  cluster:pve2:init:
+    desc: Initialize cluster terraform dependencies
+    dir: provision/terraform/cluster/pve2
+    cmds:
+      - terraform init {{.CLI_ARGS}}
+
+  cluster:pve2:plan:
+    desc: Show the changes terraform will make
+    dir: provision/terraform/cluster/pve2
+    cmds:
+      - terraform plan {{.CLI_ARGS}}
+
+  cluster:pve2:apply:
+    desc: Apply the changes to cluster
+    dir: provision/terraform/cluster/pve2
+    cmds:
+      - terraform apply {{.CLI_ARGS}}
+
+  cluster:pve2:destroy:
+    desc: Destroy the cluster
+    dir: provision/terraform/cluster/pve2
     cmds:
       - terraform destroy {{.CLI_ARGS}}
