@@ -6,4 +6,4 @@ resources:
   - cert-manager
   - kube-system
   - metallb-system
-#  - longhorn-system
+  - longhorn-system
