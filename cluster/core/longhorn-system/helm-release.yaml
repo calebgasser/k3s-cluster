@@ -17,6 +17,13 @@ spec:
         name: longhorn-charts
         namespace: flux-system
       interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      retries: -1
   values:
     persistence:
       defaultClass: true
@@ -37,6 +44,10 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "traefik"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
       hosts:
         - host: "longhorn.${SECRET_DOMAIN}"
           paths:
@@ -45,9 +56,4 @@ spec:
       tls:
         - hosts:
             - "longhorn.${SECRET_DOMAIN}"
-          secretName: "longhorn-tls"
-      annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
-        traefik.ingress.kubernetes.io/router.tls.options: "traefik-secure-tlsoptions@kubernetescrd"
+          secretName: "longhorn"
