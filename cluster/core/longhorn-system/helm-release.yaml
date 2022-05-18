@@ -17,29 +17,14 @@ spec:
         name: longhorn-charts
         namespace: flux-system
       interval: 5m
-  install:
-    createNamespace: true
-    remediation:
-      retries: -1
-  upgrade:
-    remediation:
-      retries: -1
   values:
     persistence:
       defaultClass: true
       defaultClassReplicaCount: 3
       reclaimPolicy: Retain
     defaultSettings:
-      backupstorePollInterval: 300
       backupTarget: nfs://${NFS_ADDR}:/mnt/pool-1/longhorn-backups
-      createDefaultDiskLabeledNodes: true
-      defaultDataLocality: best-effort
-      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      concurrentAutomaticEngineUpgradePerNodeLimit: 1
-      defaultDataPath: /var/lib/longhorn
       defaultReplicaCount: 3
-      replicaSoftAntiAffinity: false
-      storageMinimalAvailablePercentage: 10
       defaultLonghornStaticStorageClass: longhorn
     ingress:
       enabled: true
