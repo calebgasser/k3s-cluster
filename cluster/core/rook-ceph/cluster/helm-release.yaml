@@ -31,7 +31,8 @@ spec:
     ingress:
       dashboard:
         enabled: true
-        host: "ceph.${SECRET_DOMAIN}"
+        host:
+          name: "ceph.${SECRET_DOMAIN}"
         tls: true
         tlsSecret: "ceph-tls"
       annotations:
