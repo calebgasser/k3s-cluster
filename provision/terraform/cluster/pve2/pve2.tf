@@ -16,15 +16,26 @@ resource "proxmox_vm_qemu" "k3s_master_pve2" {
   ci_wait    = 300
   ciuser     = data.sops_file.cluster_secrets.data["pve2_proxmox_vm_user"]
   cipassword = data.sops_file.cluster_secrets.data["pve2_proxmox_vm_password"]
-  cores      = 4
+  cores      = 6
   sockets    = 1
   cpu        = "kvm64"
   memory     = 8192
   scsihw     = "virtio-scsi-pci"
+  bootdisk   = "virtio0"
+
   disk {
     slot = 0
     # set disk size here. leave it small for testing because expanding the disk takes time.
-    size     = "100G"
+    size     = "51200M"
+    type     = "virtio"
+    storage  = data.sops_file.cluster_secrets.data["pve2_master_storage"]
+    iothread = 1
+  }
+
+  disk {
+    slot = 1
+    # set disk size here. leave it small for testing because expanding the disk takes time.
+    size     = "102400M"
     type     = "virtio"
     storage  = data.sops_file.cluster_secrets.data["pve2_master_storage"]
     iothread = 1
@@ -68,17 +79,27 @@ resource "proxmox_vm_qemu" "k3s_node_pve2" {
   ci_wait    = 300
   ciuser     = data.sops_file.cluster_secrets.data["pve2_proxmox_vm_user"]
   cipassword = data.sops_file.cluster_secrets.data["pve2_proxmox_vm_password"]
-  cores      = 4
+  cores      = 6
   sockets    = 1
   cpu        = "kvm64"
-  memory     = 16384
+  memory     = 32768
   scsihw     = "virtio-scsi-pci"
+  bootdisk   = "virtio0"
+
   disk {
     slot = 0
     # set disk size here. leave it small for testing because expanding the disk takes time.
-    size     = "50G"
+    size     = "51200M"
     type     = "virtio"
     storage  = data.sops_file.cluster_secrets.data["pve2_node_storage"]
+    iothread = 1
+  }
+  disk {
+    slot = 1
+    # set disk size here. leave it small for testing because expanding the disk takes time.
+    size     = "102400M"
+    type     = "virtio"
+    storage  = data.sops_file.cluster_secrets.data["pve2_master_storage"]
     iothread = 1
   }
 

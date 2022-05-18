@@ -6,5 +6,6 @@ resources:
   - metallb-system.yaml
   - networking.yaml
   - system-upgrade.yaml
-  - longhorn.yaml
+  - rook-ceph.yaml
   - db.yaml
+# - longhorn.yaml
