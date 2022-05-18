@@ -5,4 +5,4 @@ resources:
   - webhooks
   - alerts.yaml
   - notification-provider.yaml
-  - secert.sops.yaml
+  - secret.sops.yaml
