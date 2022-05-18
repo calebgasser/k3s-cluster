@@ -16,9 +16,9 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
-    clusterDomain: ${CLUSTER_DOMAIN}
+    clusterDomain: ${SECRET_DOMAIN}
     auth:
-      rootPassword: ${MARIADB_ROOT_PASSWORD}
+      existingSecret: mariadb-secret
     primary:
       persistence:
         enabled: true
