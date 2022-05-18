@@ -4,13 +4,6 @@ kind: HelmRelease
 metadata:
   name: mariadb
   namespace: db
-install:
-  createNamespace: true
-  remediation:
-    retries: 3
-upgrade:
-  remediation:
-    retries: 3
 spec:
   interval: 10m
   chart:
