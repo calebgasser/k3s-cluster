@@ -12,3 +12,4 @@ resources:
   - kube-system
   - flux-system
   - networking
+  - db
