@@ -24,7 +24,7 @@ resource "proxmox_vm_qemu" "k3s_master_pve2" {
   disk {
     slot = 0
     # set disk size here. leave it small for testing because expanding the disk takes time.
-    size     = "30G"
+    size     = "100G"
     type     = "virtio"
     storage  = data.sops_file.cluster_secrets.data["pve2_master_storage"]
     iothread = 1
