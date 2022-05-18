@@ -11,3 +11,8 @@ k3s_agent:
   kubelet-arg:
     # Allow k8s services to contain TCP and UDP on the same port
     - "feature-gates=MixedProtocolLBService=true"
+  # Add node-label for longhorn to create disks
+  # https://longhorn.io/docs/1.1.2/advanced-resources/default-disk-and-node-config/
+  # CLI: kubectl label nodes k8s-worker01 node.longhorn.io/create-default-disk=true
+  node-label:
+    - "node.longhorn.io/create-default-disk=true"
