@@ -51,3 +51,7 @@ spec:
         cert-manager.io/cluster-issuer: "${LETSENCRYPT_ISSUER}"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: cow
+        hajimari.io/group: storage
+        hajimari.io/appName: longhorn
