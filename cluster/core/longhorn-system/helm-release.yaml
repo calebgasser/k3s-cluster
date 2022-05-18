@@ -26,6 +26,7 @@ spec:
       backupTarget: nfs://${NFS_ADDR}:/mnt/pool-1/longhorn-backups
       defaultReplicaCount: 3
       defaultLonghornStaticStorageClass: longhorn
+      createDefaultDiskLabeledNodes: true
     ingress:
       enabled: true
       host: "longhorn.${SECRET_DOMAIN}"
