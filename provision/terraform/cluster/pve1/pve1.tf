@@ -22,6 +22,7 @@ resource "proxmox_vm_qemu" "k3s_master_pve1" {
   memory     = 8192
   scsihw     = "virtio-scsi-pci"
   bootdisk   = "virtio0"
+  onboot     = true
 
   disk {
     slot = 0
@@ -44,7 +45,7 @@ resource "proxmox_vm_qemu" "k3s_master_pve1" {
   # if you want two NICs, just copy this whole network section and duplicate it
   network {
     model  = "virtio"
-    bridge = "vmbr0"
+    bridge = "vmbr1"
   }
   # not sure exactly what this is for. presumably something about MAC addresses and ignore network changes during the life of the VM
   lifecycle {
@@ -85,6 +86,7 @@ resource "proxmox_vm_qemu" "k3s_node_pve1" {
   memory     = 32768
   scsihw     = "virtio-scsi-pci"
   bootdisk   = "virtio0"
+  onboot     = true
 
   disk {
     slot = 0
@@ -106,7 +108,7 @@ resource "proxmox_vm_qemu" "k3s_node_pve1" {
   # if you want two NICs, just copy this whole network section and duplicate it
   network {
     model  = "virtio"
-    bridge = "vmbr0"
+    bridge = "vmbr1"
   }
   # not sure exactly what this is for. presumably something about MAC addresses and ignore network changes during the life of the VM
   lifecycle {
