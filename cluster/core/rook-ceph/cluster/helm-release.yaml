@@ -42,7 +42,7 @@ spec:
         traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
     cephClusterSpec:
       cephVersion:
-        image: quay.io/ceph/ceph:v17.2.0
+        image: quay.io/ceph/ceph:v17.2.7
       crashCollector:
         disable: false
       dashboard:
